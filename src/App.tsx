@@ -1,15 +1,17 @@
-import React from "react";
-import "./App.css";
+import React, { useEffect } from "react";
 import { BG_IMG } from "./utils/constant";
 import { useState, ChangeEvent } from "react";
+import { suggestionType } from "./types";
+import Search from "./components/Search";
 
 const App = (): JSX.Element => {
-  const [weather, setWeather] = useState<string>('');
+  const [weather, setWeather] = useState<string>("");
   const [suggestions, setSuggestions] = useState<[]>([]);
+  const [city, setCity] = useState<suggestionType | null>(null);
 
-  const apiCall = (value: string) => {
+  const getSearch = (value: string) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${value.trim()}&appid=${
+      `https://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${
         process.env.REACT_APP_API_KEY
       }`
     )
@@ -21,61 +23,50 @@ const App = (): JSX.Element => {
     const value = e.target.value.trim();
     setWeather(value);
 
-    if (value === '') return
-    apiCall(value);
+    if (value === "") return;
+    setTimeout(() => {
+      getSearch(value);
+    }, 1000);
   };
 
-  console.log(suggestions);
+  useEffect(() => {
+    console.log("city");
+    if (city) {
+      setWeather(city.name);
+      setSuggestions([]);
+    }
+  }, [city]);
 
-  // const fetchApi = async () => {
-  //   const data = await fetch(
-  //     `https://api.openweathermap.org/data/2.5/weather?q=${weather}&appid=${process.env.REACT_APP_API_KEY}`
-  //   );
-  //   const json = await data.json();
-  //   setWeatherData(json);
+  const suggestionData = (item: suggestionType) => {
+    setCity(item);
+  };
 
-  //   console.log(suggestions);
-  // };
+  const getWeather = (item: suggestionType) => {
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${item.lat}&lon=${item.lon}&appid=${process.env.REACT_APP_API_KEY}`
+    )
+      .then((res) => res.json())
+      .then((data) => console.log(data, "latitude"));
 
+    console.log(suggestions);
+  };
+
+  const onSubmit = () => {
+    if (!city) return;
+    getWeather(city);
+  };
+
+  console.log(city, "city");
   return (
-    <main
-      className="h-[100vh] w-full flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${BG_IMG})` }}
-    >
-      <section
-        className="w-full md:max-w-[500px] h-full md:max-h-[500px] text-center p-4 flex flex-col items-center 
-        justify-center md:px-10 text-white bg-white md:bg-opacity-5 bg-opacity-20 
-        backdrop-blur-lg drop-shadow-lg rounded-lg"
-      >
-        <h1 className="text-4xl font-black ">
-          Weather<span className="font-thin">Forecast</span>
-        </h1>
-        <p>Enter a place that you want to know the weather</p>
-        <div className="flex justify-center mt-5 items-center">
-          <input
-            type="text"
-            value={weather}
-            onChange={onInputChange}
-            className="p-2 text-black rounded-l-lg border-2 border-white"
-          />
-
-          <button className="border-2 rounded-r-lg p-2">get</button>
-        </div>
-        <div>
-          {/* {suggestions.map((item : {name:string}) =>(
-            <p>{item.name}</p>
-          ))} */}
-        </div>
-
-        {/* <ol className="bg-white flex w-3/5 flex-col justify-center items-center rounded-lg">
-          {suggestions.map((item: { name: string }) => (
-            <li className="text-black bg-gray-200 w-full p-1 mt-1 rounded-t-lg ">
-              {item?.name}
-            </li>
-          ))}
-        </ol> */}
-      </section>
-    </main>
+    <>
+      <Search
+        weather={weather}
+        suggestions={suggestions}
+        onInputChange={onInputChange}
+        suggestionData={suggestionData}
+        onSubmit={onSubmit}
+      />
+    </>
   );
 };
 
