@@ -1,0 +1,1 @@
+export const BG_IMG = 'https://wallpaperaccess.com/full/5466409.jpg'
