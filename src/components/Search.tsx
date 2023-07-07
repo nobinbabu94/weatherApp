@@ -10,8 +10,14 @@ type Props = {
   onSubmit: () => void;
 };
 
-const Search = (props as Props): JSX.Element => {
-  const {onInputChange,weather,suggestions,onSubmit,suggestionData} = props;
+const Search = ({
+  onInputChange,
+  weather,
+  suggestions,
+  onSubmit,
+  suggestionData,
+}: Props): JSX.Element => {
+  
   return (
     <main
       className="h-[100vh] w-full flex items-center justify-center bg-cover bg-center"
