@@ -1,6 +1,7 @@
 import React, { ChangeEvent } from "react";
-import { suggestionType } from "../types";
+import { forecastType, suggestionType } from "../types";
 import { BG_IMG } from "../utils/constant";
+import Forecast from "./Forecast";
 
 type Props = {
   weather: string;
@@ -8,6 +9,7 @@ type Props = {
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   suggestionData: (item: suggestionType) => void;
   onSubmit: () => void;
+  forecastData: forecastType | null;
 };
 
 const Search = ({
@@ -16,20 +18,18 @@ const Search = ({
   suggestions,
   onSubmit,
   suggestionData,
+  forecastData,
 }: Props): JSX.Element => {
-  
   return (
-    <main
-      className="h-[100vh] w-full flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${BG_IMG})` }}
-    >
+
       <section
-        className="w-full md:max-w-[500px] h-full md:max-h-[500px] text-center p-4 flex flex-col items-center 
-        justify-center md:px-10 text-white bg-white md:bg-opacity-5 bg-opacity-20 
+        className="w-full md:max-w-[500px] min-h-screen max-h-auto md:max-h-full text-center p-4 flex flex-col items-center 
+         md:px-10 text-white bg-white md:bg-opacity-5 bg-opacity-20 
         backdrop-blur-lg drop-shadow-lg rounded-lg"
       >
         <h1 className="text-4xl font-black ">
-          Weather<span className="font-thin">Forecast</span>
+          Weather
+          {/* <span className="font-thin">Forecast</span> */}
         </h1>
         <p>Enter a place that you want to know the weather</p>
         <div className="flex justify-center mt-5 items-center">
@@ -55,8 +55,12 @@ const Search = ({
             </li>
           ))}
         </ul>
+       
+        {forecastData ? (
+        <Forecast forecastData={forecastData} weather={weather}/>
+      ) : ''}
       </section>
-    </main>
+
   );
 };
 

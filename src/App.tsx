@@ -14,20 +14,22 @@ const App = (): JSX.Element => {
 
   return (
     <main
-      className="h-[100vh] w-full flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${BG_IMG})` }}
+      className="h-auto max-h-[500vh] w-full flex items-center justify-center bg-cover bg-center"
+      style={{ 
+        // backgroundImage: `url(${BG_IMG})` \
+        backgroundColor:'gray'
+      }}
     >
-      {forecast ? (
-        "forecast"
-      ) : (
+      
         <Search
           weather={weather}
           suggestions={suggestions}
           onInputChange={onInputChange}
           suggestionData={suggestionData}
           onSubmit={onSubmit}
+          forecastData={forecast}
         />
-      )}
+
     </main>
   );
 };
