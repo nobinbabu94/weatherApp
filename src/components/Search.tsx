@@ -44,12 +44,12 @@ const Search = ({
             get
           </button>
         </div>
-        <ul className="z-1 fixed mt-[146px] bg-white flex w-[17em] flex-col items-start rounded-lg ">
+        <ul className="z-10 fixed mt-[146px] bg-white flex w-[17em] flex-col items-start rounded-lg ">
           {suggestions.map((item: suggestionType, index: number) => (
             <li
               key={item.name + index}
               onClick={() => suggestionData(item)}
-              className="text-black bg-gray-100 w-full p-1 rounded-b-lg hover:bg-slate-200 flex justify-start pl-4"
+              className="text-black bg-gray-100 cursor-pointer w-full p-1 rounded-b-lg hover:bg-slate-200 flex justify-start pl-4"
             >
               {item?.name + "," + item.country}
             </li>
