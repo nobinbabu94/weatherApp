@@ -12,7 +12,6 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
   const minTemp = Math.round(list?.main?.temp_min);
   const forecastList = forecastData?.list.splice(0, 7);
 
-  console.log(list?.weather[0]?.icon);
   return (
     <>
       <div className="w-full md:max-w-[500px] py-4 md:py-4 md:px-10 lg:px-24 h-full lg:h-auto drop-shadow-lg z-0">
