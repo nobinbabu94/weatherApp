@@ -36,7 +36,7 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
                 {index === 0 ? "now" : new Date(item.dt * 1000).getHours()}
               </h1>
               <img
-                src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                 alt={item.weather[0].description}
               />
               <h1>
