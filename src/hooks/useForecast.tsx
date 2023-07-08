@@ -18,11 +18,9 @@ const useForecast = () => {
       .then((data) => setSuggestions(data));
   };
 
-  console.log(suggestions,'suggest')
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setWeather(value);
-    // console.log(value+'value')
     if (value === "") return;
     setTimeout(() => {
       getSearch(value);
@@ -54,13 +52,9 @@ const useForecast = () => {
         setForecast(forecastData);
       });
   };
-  console.log(forecast);
 
   const onSubmit = () => {
     if (!city) return;
-
-    // console.log(city?.name +'city')
-    // console.log(weather +'weather')
     getWeather(city);
   };
 

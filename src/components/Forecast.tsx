@@ -11,8 +11,6 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
   const maxTemp = Math.round(list?.main?.temp_max - 273.15);
   const minTemp = Math.round(list?.main?.temp_min - 273.15);
   const forecastList = forecastData?.list.splice(0,7)
-
-  //   console.log(weather, "ccccccccccciiiiiiiiiiiitttttttttyyyyyyyyyyyy");
   return (
     <>
       <div className="mt-5 flex flex-col">
