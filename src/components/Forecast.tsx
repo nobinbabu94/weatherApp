@@ -10,7 +10,7 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
   const temp = Math.round(list?.main?.temp);
   const maxTemp = Math.round(list?.main?.temp_max);
   const minTemp = Math.round(list?.main?.temp_min);
-  const forecastList = forecastData?.list
+  const forecastList = forecastData?.list.splice(0,7)
   return (
     <>
       <div className="mt-5 flex flex-col">
@@ -36,7 +36,7 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
                 {index === 0 ? "now" : new Date(item.dt * 1000).getHours()}
               </h1>
               <img
-                src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@6x.png`}
                 alt={item.weather[0].description}
               />
               <h1>
