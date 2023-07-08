@@ -1,10 +1,11 @@
 import useForecast from "./hooks/useForecast";
-import { BG_IMG,} from "./utils/constant";
+import { BG_IMG, CLEAR, CLOUDS, RAIN } from "./utils/constant";
 import Search from "./components/Search";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 const App = (): JSX.Element => {
-  // const [bg, setBg] = useState(BG_IMG);
+  const [bg, setBg] = useState(BG_IMG);
   // const [showBackground, setShowBackground] = useState<boolean>(false);
 
   const {
@@ -13,10 +14,10 @@ const App = (): JSX.Element => {
     forecast,
     suggestionData,
     onInputChange,
-    onSubmit,
+    // onSubmit,
   } = useForecast();
 
-  // const list = forecast?.list[0];
+  const list = forecast?.list[0];
   // useEffect(() => {
   //   if (list?.weather[0].main === "Rain") {
   //     setBg(RAIN);
@@ -38,7 +39,7 @@ const App = (): JSX.Element => {
       // `fade-container ${showBackground ? "fade-in" : "fade-out"} 
     'h-auto max-h-[500vh] w-full flex items-center justify-center bg-cover bg-center'}
     style={{
-      backgroundImage: `url(${BG_IMG})`,
+      backgroundImage: `url(${bg})`,
     }}
     >
       <Search
@@ -46,7 +47,7 @@ const App = (): JSX.Element => {
         suggestions={suggestions}
         onInputChange={onInputChange}
         suggestionData={suggestionData}
-        onSubmit={onSubmit}
+        // onSubmit={onSubmit}
         forecastData={forecast}
       />
     </main>

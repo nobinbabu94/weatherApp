@@ -1,6 +1,5 @@
 import React, { ChangeEvent } from "react";
 import { forecastType, suggestionType } from "../types";
-import { BG_IMG } from "../utils/constant";
 import Forecast from "./Forecast";
 
 type Props = {
@@ -8,7 +7,7 @@ type Props = {
   suggestions: [];
   onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
   suggestionData: (item: suggestionType) => void;
-  onSubmit: () => void;
+  // onSubmit: () => void;
   forecastData: forecastType | null;
 };
 
@@ -16,7 +15,7 @@ const Search = ({
   onInputChange,
   weather,
   suggestions,
-  onSubmit,
+  // onSubmit,
   suggestionData,
   forecastData,
 }: Props): JSX.Element => {
@@ -37,14 +36,14 @@ const Search = ({
             type="text"
             value={weather}
             onChange={onInputChange}
-            className="p-2 text-black rounded-l-lg border-2 border-white pl-6"
+            className="p-2 text-black rounded-lg border-2 border-white pl-6"
           />
-
+{/* 
           <button onClick={onSubmit} className="border-2 rounded-r-lg p-2">
             get
-          </button>
+          </button> */}
         </div>
-        <ul className="z-10 fixed mt-[146px] bg-white flex w-[17em] flex-col items-start rounded-lg ">
+        <ul className="z-10 fixed mt-[146px] bg-white flex w-[14em] flex-col items-start rounded-lg ">
           {suggestions.map((item: suggestionType, index: number) => (
             <li
               key={item.name + index}

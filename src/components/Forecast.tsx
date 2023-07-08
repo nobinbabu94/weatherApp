@@ -1,5 +1,7 @@
 import React from "react";
-import { forecastType, suggestionType } from "../types";
+import { forecastType } from "../types";
+import { SUNRISE, SUNSET } from "../utils/constant";
+import { getSunTime } from "../utils/helperFunction";
 
 type Props = {
   forecastData: forecastType | null;
@@ -14,12 +16,12 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
 
   return (
     <>
-      <div className="w-full md:max-w-[500px] py-4 md:py-4 md:px-10 lg:px-24 h-full lg:h-auto drop-shadow-lg z-0">
-        <h1 className="text-2xl font-extrabold text-black">
+      <div className="w-full md:max-w-[500px] py-4 md:py-4 md:px-10 lg:px-24 h-full lg:h-auto drop-shadow-lg z-0 flex flex-col items-center justify-center">
+        <h1 className="text-2xl font-extrabold text-black font-serif ">
           {forecastData?.name}
           <span className="font-thin">, {forecastData?.country}</span>
         </h1>
-        <h1 className="text-2xl">
+        <h1 className="text-2xl ">
           {temp}
           <sup>o</sup>
         </h1>
@@ -37,7 +39,7 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
               key={index}
             >
               <h1>
-                {index === 0 ? "now" : new Date(item.dt * 1000).getHours()}
+                {index === 0 ? "Now" : new Date(item.dt * 1000).getHours()}
               </h1>
               <img
                 src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
@@ -49,6 +51,16 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
               </h1>
             </div>
           ))}
+        </div>
+        <div className="flex justify-between w-[300px]">
+          <div className="bg-red-400 w-full m-2 flex flex-col items-center rounded-lg">
+            <img style={{ width: "40px" }} src={SUNRISE} alt="sunrise" />
+            <p >{getSunTime(forecastData?.sunrise)}</p>
+          </div>
+          <div className="bg-blue-400 w-full m-2 flex flex-col items-center rounded-lg">
+            <img style={{ width: "40px" }} src={SUNSET} alt="sunrise" />
+            <p>{getSunTime(forecastData?.sunset)}</p>
+          </div>
         </div>
       </div>
     </>
