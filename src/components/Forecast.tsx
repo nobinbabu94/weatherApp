@@ -10,12 +10,12 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
   const temp = Math.round(list?.main?.temp);
   const maxTemp = Math.round(list?.main?.temp_max);
   const minTemp = Math.round(list?.main?.temp_min);
-  const forecastList = forecastData?.list.splice(0,7)
+  const forecastList = forecastData?.list.splice(0, 7);
 
-  console.log(list?.weather[0]?.icon)
+  console.log(list?.weather[0]?.icon);
   return (
     <>
-      <div className="mt-5 flex flex-col">
+      <div className="w-full md:max-w-[500px] py-4 md:py-4 md:px-10 lg:px-24 h-full lg:h-auto drop-shadow-lg">
         <h1 className="text-2xl font-extrabold text-black">
           {forecastData?.name}
           <span className="font-thin">, {forecastData?.country}</span>
@@ -31,9 +31,12 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
             <sup>o</sup>
           </p>
         </div>
-        <div className="flex mt-4 pb-2 mb-5">
+        <div className="flex mt-4 pb-2 mb-5 justify-center">
           {forecastList?.map((item, index) => (
-            <div className="inline-block text-center w-[50px] px-5" key={index}>
+            <div
+              className="inline-block text-center w-[50px] flex-shrink-0"
+              key={index}
+            >
               <h1>
                 {index === 0 ? "now" : new Date(item.dt * 1000).getHours()}
               </h1>
