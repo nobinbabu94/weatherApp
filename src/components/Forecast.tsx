@@ -7,10 +7,10 @@ type Props = {
 };
 const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
   const list = forecastData?.list[0];
-  const temp = Math.round(list?.main?.temp - 273.15);
-  const maxTemp = Math.round(list?.main?.temp_max - 273.15);
-  const minTemp = Math.round(list?.main?.temp_min - 273.15);
-  const forecastList = forecastData?.list.splice(0,7)
+  const temp = Math.round(list?.main?.temp);
+  const maxTemp = Math.round(list?.main?.temp_max);
+  const minTemp = Math.round(list?.main?.temp_min);
+  const forecastList = forecastData?.list
   return (
     <>
       <div className="mt-5 flex flex-col">
