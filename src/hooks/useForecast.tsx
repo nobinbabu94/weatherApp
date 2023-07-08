@@ -1,5 +1,6 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import { forecastType, suggestionType } from "../types/index";
+import { BASE_URL } from "../utils/constant";
 
 const useForecast = () => {
   const [weather, setWeather] = useState<string>("");
@@ -9,7 +10,7 @@ const useForecast = () => {
 
   const getSearch = async (value: string) => {
     fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${value.trim()}&limit=5&appid=${
+      `${BASE_URL}/geo/1.0/direct?q=${value.trim()}&limit=5&lang=en&appid=${
         process.env.REACT_APP_API_KEY
       }`
     )
@@ -17,6 +18,7 @@ const useForecast = () => {
       .then((data) => setSuggestions(data));
   };
 
+  console.log(suggestions,'suggest')
   const onInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setWeather(value);
@@ -40,7 +42,7 @@ const useForecast = () => {
 
   const getWeather = (item: suggestionType) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?lat=${item.lat}&lon=${item.lon}&appid=${process.env.REACT_APP_API_KEY}`
+      `${BASE_URL}/data/2.5/forecast?lat=${item.lat}&lon=${item.lon}&units=metric&lang=en&appid=${process.env.REACT_APP_API_KEY}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -68,7 +70,7 @@ const useForecast = () => {
     forecast,
     suggestionData,
     onInputChange,
-    onSubmit,city
+    onSubmit,
   };
 };
 

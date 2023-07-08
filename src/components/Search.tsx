@@ -27,7 +27,7 @@ const Search = ({
          md:px-10 text-white bg-white md:bg-opacity-5 bg-opacity-20 
         backdrop-blur-lg drop-shadow-lg rounded-lg"
       >
-        <h1 className="text-4xl font-black ">
+        <h1 className="text-4xl font-black mt-5">
           Weather
           {/* <span className="font-thin">Forecast</span> */}
         </h1>
@@ -44,7 +44,7 @@ const Search = ({
             get
           </button>
         </div>
-        <ul className="bg-white flex w-3/5 flex-col items-start rounded-lg ">
+        <ul className="z-1 fixed mt-[146px] bg-white flex w-[17em] flex-col items-start rounded-lg ">
           {suggestions.map((item: suggestionType, index: number) => (
             <li
               key={item.name + index}
