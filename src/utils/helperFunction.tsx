@@ -9,3 +9,5 @@ export const getSunTime = (timestamp: number | any): string  => {
   
     return `${hours}:${minutes}`
   }
+
+  export const currTime = new Date().toLocaleTimeString()

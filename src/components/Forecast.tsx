@@ -1,7 +1,7 @@
 import React from "react";
 import { forecastType } from "../types";
 import { SUNRISE, SUNSET } from "../utils/constant";
-import { getSunTime } from "../utils/helperFunction";
+import { currTime, getSunTime } from "../utils/helperFunction";
 
 type Props = {
   forecastData: forecastType | null;
@@ -26,6 +26,7 @@ const Forecast = ({ forecastData, weather }: Props): JSX.Element => {
           <sup>o</sup>
         </h1>
         <p>{list?.weather[0].main}</p>
+        <h1>Current Time: {currTime}</h1>
         <div className="flex justify-center">
           <p>
             H:{Math.ceil(maxTemp)} <sup>o</sup>, M:{Math.floor(minTemp)}{" "}

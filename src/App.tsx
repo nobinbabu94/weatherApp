@@ -15,9 +15,10 @@ const App = (): JSX.Element => {
     suggestionData,
     onInputChange,
     // onSubmit,
+    setSuggestions
   } = useForecast();
 
-  const list = forecast?.list[0];
+ 
   // useEffect(() => {
   //   if (list?.weather[0].main === "Rain") {
   //     setBg(RAIN);
@@ -48,8 +49,10 @@ const App = (): JSX.Element => {
         onInputChange={onInputChange}
         suggestionData={suggestionData}
         // onSubmit={onSubmit}
+        setSuggestions={setSuggestions}
         forecastData={forecast}
       />
+ 
     </main>
   );
 };

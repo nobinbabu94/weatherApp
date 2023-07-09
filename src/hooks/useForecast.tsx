@@ -75,6 +75,7 @@ const useForecast = () => {
     forecast,
     suggestionData,
     onInputChange,
+    setSuggestions
     // onSubmit,
   };
 };
